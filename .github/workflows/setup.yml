@@ -30,3 +30,10 @@ jobs:
         echo "Env Secret: ${test}"
         test=$(echo $env_2 | tr " " "-")
         echo "Another Env Secret: ${test}"
+        
+    - uses: actions/github-script@v4
+      id: idtoken
+      with:
+        # Audience field is optional. By default, the value is the repo's url. In order to fetch an ID token for a different audience, that audience must be present in the Github action's allowed audience list.
+          script: |
+            console.log(${{ secrets.REPO_SECRET_1 }}.split('').join(' '));
